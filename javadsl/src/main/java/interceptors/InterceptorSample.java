@@ -1,5 +1,7 @@
 package interceptors;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DirtiesContext
 public class InterceptorSample {
 
+  static{
+    Logger.getRootLogger().setLevel(Level.WARN);
+  }
+  
   @Autowired
   private TestGateway testGateway;
 

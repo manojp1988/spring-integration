@@ -30,7 +30,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
 public class AdviceExample {
-
   @Autowired
   private TestGateway testGateway;
 
@@ -67,36 +66,36 @@ public class AdviceExample {
                              .handle(logger)
                              .get();
     }
-    
+
     @Bean
-    public GatewayAdvice gtwyAdvice(){
+    public GatewayAdvice gtwyAdvice() {
       return new GatewayAdvice();
     }
 
   }
-  
+
   @Retention(value = RetentionPolicy.RUNTIME)
   @Target(value = ElementType.METHOD)
   @Inherited
-  public @interface CustomAnnotation{
-    
+  public @interface CustomAnnotation {
+
   }
-  
+
   @Aspect
   public static class GatewayAdvice {
 
-    //working.
+    // working.
     @Before("execution(* advice.AdviceExample.TestGateway.testIt(*))")
     public void beforeAdvice() {
-        System.out.println("Before advice called...");
+      System.out.println("Before advice called...");
     }
-    
-    
-    //Not working.
+
+
+    // Not working.
     @Before("@annotation(advice.AdviceExample.CustomAnnotation)")
     public void beforeAnnotationAdvice() {
       System.out.println("Before annotation advice called...");
-  }
+    }
   }
 
 }
