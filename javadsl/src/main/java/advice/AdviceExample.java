@@ -26,36 +26,64 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdviceExample.
+ */
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
 public class AdviceExample {
+  
+  /** The test gateway. */
   @Autowired
   private TestGateway testGateway;
 
+  /**
+   * Test it.
+   */
   @Test
   public void testIt() {
     System.out.println(this.testGateway.testIt("foo"));
   }
 
 
+  /**
+   * The Interface TestGateway.
+   */
   @MessagingGateway
   public interface TestGateway {
 
+    /**
+     * Test it.
+     *
+     * @param payload the payload
+     * @return the string
+     */
     @Gateway(requestChannel = "testChannel")
     @CustomAnnotation
     String testIt(String payload);
 
   }
 
+  /**
+   * The Class ContextConfiguration.
+   */
   @Configuration
   @EnableIntegration
   @IntegrationComponentScan
   @EnableMessageHistory
   @EnableAspectJAutoProxy
   public static class ContextConfiguration {
+    
+    /** The logger. */
     LoggingHandler logger = new LoggingHandler(LoggingHandler.Level.INFO.name());
 
+    /**
+     * Test flow.
+     *
+     * @return the integration flow
+     */
     @Bean
     public IntegrationFlow testFlow() {
       return IntegrationFlows.from("testChannel")
@@ -67,6 +95,11 @@ public class AdviceExample {
                              .get();
     }
 
+    /**
+     * Gtwy advice.
+     *
+     * @return the gateway advice
+     */
     @Bean
     public GatewayAdvice gtwyAdvice() {
       return new GatewayAdvice();
@@ -74,6 +107,9 @@ public class AdviceExample {
 
   }
 
+  /**
+   * The Interface CustomAnnotation.
+   */
   @Retention(value = RetentionPolicy.RUNTIME)
   @Target(value = ElementType.METHOD)
   @Inherited
@@ -81,9 +117,15 @@ public class AdviceExample {
 
   }
 
+  /**
+   * The Class GatewayAdvice.
+   */
   @Aspect
   public static class GatewayAdvice {
 
+    /**
+     * Before advice.
+     */
     // working.
     @Before("execution(* advice.AdviceExample.TestGateway.testIt(*))")
     public void beforeAdvice() {
@@ -91,6 +133,9 @@ public class AdviceExample {
     }
 
 
+    /**
+     * Before annotation advice.
+     */
     // Not working.
     @Before("@annotation(advice.AdviceExample.CustomAnnotation)")
     public void beforeAnnotationAdvice() {
