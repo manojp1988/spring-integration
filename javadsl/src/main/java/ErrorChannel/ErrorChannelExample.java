@@ -38,7 +38,7 @@ public class ErrorChannelExample {
    */
   @Test
   public void testIt() {
-    System.out.println(this.testGateway.testIt("foo", "12344"));
+    System.out.println("Response is"+this.testGateway.testIt("foo", "12344"));
   }
 
   @MessagingGateway(errorChannel = "sampleErrorChannel")
@@ -60,13 +60,6 @@ public class ErrorChannelExample {
     @Bean
     public IntegrationFlow testFlow() {
       return IntegrationFlows.from("testChannel")
-                             .handle(new GenericHandler() {
-
-                               public Object handle(Object payload, Map headers) {
-                                // System.out.println(headers);
-                                 return payload;
-                               }
-                             })
                              .transform(new AbstractPayloadTransformer<String, String>() {
 
                                @Override
@@ -91,12 +84,10 @@ public class ErrorChannelExample {
                              .handle(new GenericHandler<MessagingException>() {
 
                                public Object handle(MessagingException payload, Map headers) {
-                                 System.out.println(payload.getCause());
                                  System.out.println(payload.getFailedMessage().getHeaders());
                                  return payload;
                                }
                              })
-                             .channel("nullChannel")
                              .get();
     }
   }
