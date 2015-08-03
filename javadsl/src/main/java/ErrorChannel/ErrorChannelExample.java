@@ -2,8 +2,6 @@ package ErrorChannel;
 
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,7 @@ import org.springframework.integration.dsl.channel.MessageChannels;
 import org.springframework.integration.dsl.support.GenericHandler;
 import org.springframework.integration.transformer.AbstractPayloadTransformer;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessagingException;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -89,10 +88,11 @@ public class ErrorChannelExample {
     @Bean
     public IntegrationFlow errorFlow() {
       return IntegrationFlows.from("sampleErrorChannel")
-                             .handle(new GenericHandler() {
+                             .handle(new GenericHandler<MessagingException>() {
 
-                               public Object handle(Object payload, Map headers) {
-                                 System.out.println(headers);
+                               public Object handle(MessagingException payload, Map headers) {
+                                 System.out.println(payload.getCause());
+                                 System.out.println(payload.getFailedMessage().getHeaders());
                                  return payload;
                                }
                              })
