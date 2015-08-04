@@ -83,9 +83,9 @@ public class ErrorChannelExample {
       return IntegrationFlows.from("sampleErrorChannel")
                              .handle(new GenericHandler<MessagingException>() {
 
-                               public Object handle(MessagingException payload, Map headers) {
+                               public String handle(MessagingException payload, Map headers) {
                                  System.out.println(payload.getFailedMessage().getHeaders());
-                                 return payload;
+                                 return "Error";
                                }
                              })
                              .get();
