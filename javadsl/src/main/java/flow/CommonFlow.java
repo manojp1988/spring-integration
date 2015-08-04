@@ -15,7 +15,7 @@ public class CommonFlow implements IntegrationFlow {
     return transformer;
   }
 
-  public void setTransformer(GenericTransformer<String, String> transformer) {
+  public <T extends GenericTransformer> void setTransformer(T transformer) {
     this.transformer = transformer;
   }
 

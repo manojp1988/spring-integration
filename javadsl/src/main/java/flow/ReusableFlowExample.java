@@ -34,6 +34,7 @@ public class ReusableFlowExample {
   public void testIt() {
     System.out.println(testGateway.helloTest("Manoj"));
     System.out.println(testGateway.welcomeTest("Manoj"));
+    System.out.println(testGateway.squareOf(2));
   }
 
   @MessagingGateway
@@ -47,8 +48,9 @@ public class ReusableFlowExample {
     @Gateway(requestChannel = "welcomeChannel")
     String welcomeTest(String payload);
 
-
-
+    @Gateway(requestChannel = "squareResultChannel")
+    Integer squareOf(Integer payload);
+    
   }
 
   @Configuration
@@ -68,6 +70,12 @@ public class ReusableFlowExample {
       return MessageChannels.direct()
                             .get();
     }
+    
+    @Bean
+    public MessageChannel squareResultChannel() {
+      return MessageChannels.direct()
+                            .get();
+    }
 
     @Bean
     public CommonFlow helloFlow() {
@@ -83,6 +91,13 @@ public class ReusableFlowExample {
       return testFlowImpl;
     }
 
+    @Bean
+    public CommonFlow squareResultFlow() {
+      CommonFlow testFlowImpl = new CommonFlow(squareResultChannel());
+      testFlowImpl.setTransformer(new SquareResultTransformer());
+      return testFlowImpl;
+    }
+    
   }
 
 }
