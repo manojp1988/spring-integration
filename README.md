@@ -9,7 +9,8 @@ Java dsl is better in a way that we don't need to write complex xml integration 
 Reference: [Spring-Integration-Java-DSL-Reference] (https://github.com/spring-projects/spring-integration-java-dsl/wiki/Spring-Integration-Java-DSL-Reference).
 
 ####Sample Flow:
-         A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dal way. 
+         
+A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. 
 
 ```java
   @MessagingGateway
