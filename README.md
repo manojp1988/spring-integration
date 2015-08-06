@@ -79,7 +79,7 @@ All channels are created based on the flow name we define. If you see from above
 5.	[Splitter-Aggregator](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/splitter_aggregator)	
 6.	[Expression based router.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/router/payload)
 7.	[Recipient list router.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/router/recipient)
-8.	Header value router.
+8.	[Header value router.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/router/headerValueRouter)
 
 *More will come...*
 
