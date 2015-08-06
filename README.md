@@ -12,7 +12,7 @@ Reference: [Spring-Integration-Java-DSL-Reference] (https://github.com/spring-pr
          
 A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. 
 
-*Gateway*
+*Gateway:*
 ```java
   @MessagingGateway
   public interface HelloGateway {
@@ -20,7 +20,14 @@ A sample outbound gateway can have  transformer which transform the canonical ob
     String sayHello(String payload);
   }
  ```
- *Integration flow*
+ *Channel definition:*
+ ```java
+ @Bean
+ public MessageChannel helloRequestChannel(){
+   return MessageChannels.direct().get();
+ }
+ ```
+ *Integration flow:*
  ```java
   @Bean
   public IntegrationFlow sayHelloFlow(){
@@ -30,7 +37,32 @@ A sample outbound gateway can have  transformer which transform the canonical ob
                          .handle(httpOutboundGateway)
                          .transform(responseTransformer)
                          .get();
+   }
 ```
+*How to invoke the gateway*
+   1. Invoke through simple java invocation.
+   2. Put message into the channel.
 
+```java
+  sayHello("dsl"); // Java method invocation.
+```
+```xml
+<!-- below enricher puts payload into the channel we defined above and sets into property as usual. -->
+  <int:enricher input-channel="HELLO_ENRCH_CHNL"
+		request-channel="helloRequestChannel">
+		<int:property name="name" expression="payload.name" />
+	</int:enricher>
+```
+Working example represents above can be found [here](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/enrichPayload).
+
+*Advice*
+```java
+ @Aspect
+  public static class GatewayAdvice {
+    @Before("execution(* advice.AdviceExample.HelloGateway.sayHello(*))")
+    public void beforeAdvice() {
+      System.out.println("Before advice called...");
+    }
+```
 
  
