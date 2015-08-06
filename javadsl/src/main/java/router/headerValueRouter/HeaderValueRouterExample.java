@@ -32,7 +32,7 @@ public class HeaderValueRouterExample {
 
   @Test
   public void splitTest() {
-    route.route("WELCOME", "false");
+    route.route("WELCOME", "sdsd");
   }
 
   @MessagingGateway
@@ -75,8 +75,9 @@ public class HeaderValueRouterExample {
     @Bean
     public HeaderValueRouter headerRouter() {
       HeaderValueRouter router = new HeaderValueRouter("enabled");
-      router.setIgnoreSendFailures(true);
+      router.setResolutionRequired(false);
       router.setChannelMapping("true", "helloChannel");
+      router.setChannelMapping("false", "welcomeChannel");
       router.setDefaultOutputChannel(defaultOutputChannel());
       return router;
     }
