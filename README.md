@@ -8,4 +8,4 @@ java dsl is better in a way that we don't need to write complex xml tag,more wri
 
 reference:
 
-i took visa outbound gateway to show this example.this gateway takes a canonical business 
+ 
