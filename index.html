@@ -83,14 +83,29 @@
 
 <p>All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. </p>
 
-<p><em>Advice</em></p>
+<h4>
+<a id="questions" class="anchor" href="#questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions:</h4>
 
-<div class="highlight highlight-java"><pre> @<span class="pl-smi">Aspect</span>
-  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">GatewayAdvice</span> {
-    <span class="pl-k">@Before</span>(<span class="pl-s"><span class="pl-pds">"</span>execution(* advice.AdviceExample.HelloGateway.sayHello(*))<span class="pl-pds">"</span></span>)
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">beforeAdvice</span>() {
-      <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Before advice called...<span class="pl-pds">"</span></span>);
-    }</pre></div>
+<ol>
+<li> <a href="http://stackoverflow.com/questions/31791042/how-to-put-back-errorchannel-message-into-reply-channel">How to put back errorchannel message into reply channel?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31778650/how-to-carry-over-header-info-to-errorchannel">How to carry over header info to errorChannel?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31707343/how-to-use-aop-on-spring-integration-gateways">How to use AOP on spring integration gateways?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31666328/how-to-import-spring-java-dsl-config-into-xml-configuration">How to import spring Java dsl config into XML configuration?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31631890/what-is-the-difference-between-grouping-config-via-import-and-contextconfigura">What is the difference between grouping config via @import and @ContextConfiguration.?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31626497/how-to-create-custom-component-and-add-it-to-flow-in-spring-java-dsl">How to create custom component and add it to flow in spring java dsl?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31617449/do-i-need-to-do-declare-a-channel-info-in-dsl-always">Do i need to do declare a channel info in dsl always?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31622120/how-to-do-split-aggregate-in-java-dsl-by-invoking-another-flow">How to do split-aggregate in java dsl by invoking another flow?</a>
+</li>
+<li> <a href="http://stackoverflow.com/questions/31573744/how-to-do-channel-interceptor-based-on-pattern-using-java-dsl-in-spring-integrat">How to do channel interceptor based on pattern using JAVA DSL in Spring Integration?</a>
+</li>
+</ol>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/manojp1988/spring-integration">Spring-integration-java-dsl</a> is maintained by <a href="https://github.com/manojp1988">manojp1988</a>.</span>
