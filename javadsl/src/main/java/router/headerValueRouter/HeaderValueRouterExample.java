@@ -32,13 +32,13 @@ public class HeaderValueRouterExample {
 
   @Test
   public void splitTest() {
-    route.route("WELCOME", false);
+    route.route("WELCOME", "false");
   }
 
   @MessagingGateway
   public interface RouterGateway {
     @Gateway(requestChannel = "testChannel")
-    String route(@Payload String payload, @Header("enabled") boolean isEnabled);
+    String route(@Payload String payload, @Header("enabled") String isEnabled);
   }
 
   @Configuration
