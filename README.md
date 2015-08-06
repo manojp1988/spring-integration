@@ -59,6 +59,8 @@ If you see above, you can find the difference how dsl improves readability. Inst
 
 All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. 
 
+####Example EIP Patterns:
+1.	[Flow reuse](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/flow) This is something we wanted to achieve using dsl. With xml, we had to same kind of flow redundantly in many places. 
 
 ####Questions:
 1.	[How to put back errorchannel message into reply channel?](http://stackoverflow.com/questions/31791042/how-to-put-back-errorchannel-message-into-reply-channel)
