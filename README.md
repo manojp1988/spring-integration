@@ -61,9 +61,9 @@ All channels are created based on the flow name we define. If you see from above
 
 
 ####Questions:
-1.[How to put back errorchannel message into reply channel?](http://stackoverflow.com/questions/31791042/how-to-put-back-errorchannel-message-into-reply-channel)
-2.[How to carry over header info to errorChannel?](http://stackoverflow.com/questions/31778650/how-to-carry-over-header-info-to-errorchannel)
-3.[How to use AOP on spring integration gateways?](http://stackoverflow.com/questions/31707343/how-to-use-aop-on-spring-integration-gateways)
+1.	[How to put back errorchannel message into reply channel?](http://stackoverflow.com/questions/31791042/how-to-put-back-errorchannel-message-into-reply-channel)
+2.	[How to carry over header info to errorChannel?](http://stackoverflow.com/questions/31778650/how-to-carry-over-header-info-to-errorchannel)
+3.	[How to use AOP on spring integration gateways?](http://stackoverflow.com/questions/31707343/how-to-use-aop-on-spring-integration-gateways)
 4.[How to import spring Java dsl config into XML configuration?](http://stackoverflow.com/questions/31666328/how-to-import-spring-java-dsl-config-into-xml-configuration)
 5.[What is the difference between grouping config via @import and @ContextConfiguration.?](http://stackoverflow.com/questions/31631890/what-is-the-difference-between-grouping-config-via-import-and-contextconfigura)
 6.[How to create custom component and add it to flow in spring java dsl?](http://stackoverflow.com/questions/31626497/how-to-create-custom-component-and-add-it-to-flow-in-spring-java-dsl)
