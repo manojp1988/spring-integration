@@ -33,7 +33,16 @@
 <h4>
 <a id="sample-flow" class="anchor" href="#sample-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample Flow:</h4>
 
-<p>A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. </p>
+<p>A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way.</p>
+
+<p><em>Java configuration</em></p>
+
+<div class="highlight highlight-java"><pre>  @<span class="pl-smi">Configuration</span>
+  @<span class="pl-smi">EnableIntegration</span> <span class="pl-c">// Enables integration infrastructure like channels.</span>
+  @<span class="pl-smi">IntegrationComponentScan</span> <span class="pl-c">// Like component scan, this will scan integration components like @MessaginGateway etc.</span>
+  @<span class="pl-smi">EnableMessageHistory</span> <span class="pl-c">// This enables adding message flow history in the header.</span>
+  <span class="pl-k">public</span>  <span class="pl-k">class</span> <span class="pl-en">ContextConfiguration</span> {
+  }</pre></div>
 
 <p><em>Gateway:</em></p>
 
