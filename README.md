@@ -10,7 +10,17 @@ Reference: [Spring-Integration-Java-DSL-Reference] (https://github.com/spring-pr
 
 ####Sample Flow:
          
-A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. 
+A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way.
+
+*Java configuration*
+```java
+  @Configuration
+  @EnableIntegration // Enables integration infrastructure like channels.
+  @IntegrationComponentScan // Like component scan, this will scan integration components like @MessaginGateway etc.
+  @EnableMessageHistory // This enables adding message flow history in the header.
+  public  class ContextConfiguration {
+  }
+```
 
 *Gateway:*
 ```java
