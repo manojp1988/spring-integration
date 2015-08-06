@@ -68,7 +68,7 @@ All channels are created based on the flow name we define. If you see from above
 4.	[Re-route error channel to caller.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/ErrorChannel).
 5.	[Splitter-Aggregator](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/splitter_aggregator)	
 6.	[Expression based router.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/router/payload)
-7.	Recipient list router.
+7.	[Recipient list router.](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/router/recipient)
 8.	Header value router.
 
 *More will come...*
