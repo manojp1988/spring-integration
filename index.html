@@ -81,7 +81,24 @@
 
 <p>If you see above, you can find the difference how dsl improves readability. Instead of we defining channels, spring generates channels for us. And you can see them if you enable logging.</p>
 
+<h4>
+<a id="debugging" class="anchor" href="#debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging.</h4>
+
 <p>All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. </p>
+
+<h4>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples:</h4>
+
+<ol>
+<li> <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/flow">Flow reuse.</a> This is something we wanted to achieve using dsl. With xml, we had to same kind of flow redundantly in many places. </li>
+<li> <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/advice">Advice for gateways.</a> We can ran aop on the gateways. This is not specific to dsl though.</li>
+<li> <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/interceptors">Global channel interceptors/</a>.</li>
+<li> <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/ErrorChannel">Re-route error channel to caller.</a>.</li>
+<li> <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/splitter_aggregator">Splitter-Aggregator</a><br>
+</li>
+</ol>
+
+<p><em>More will come...</em></p>
 
 <h4>
 <a id="questions" class="anchor" href="#questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions:</h4>
