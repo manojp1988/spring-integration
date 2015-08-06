@@ -60,14 +60,17 @@ If you see above, you can find the difference how dsl improves readability. Inst
 All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. 
 
 
-*Advice*
-```java
- @Aspect
-  public static class GatewayAdvice {
-    @Before("execution(* advice.AdviceExample.HelloGateway.sayHello(*))")
-    public void beforeAdvice() {
-      System.out.println("Before advice called...");
-    }
-```
+####Questions:
+1.[How to put back errorchannel message into reply channel?](http://stackoverflow.com/questions/31791042/how-to-put-back-errorchannel-message-into-reply-channel)
+2.[How to carry over header info to errorChannel?](http://stackoverflow.com/questions/31778650/how-to-carry-over-header-info-to-errorchannel)
+3.[How to use AOP on spring integration gateways?](http://stackoverflow.com/questions/31707343/how-to-use-aop-on-spring-integration-gateways)
+4.[How to import spring Java dsl config into XML configuration?](http://stackoverflow.com/questions/31666328/how-to-import-spring-java-dsl-config-into-xml-configuration)
+5.[What is the difference between grouping config via @import and @ContextConfiguration.?](http://stackoverflow.com/questions/31631890/what-is-the-difference-between-grouping-config-via-import-and-contextconfigura)
+6.[How to create custom component and add it to flow in spring java dsl?](http://stackoverflow.com/questions/31626497/how-to-create-custom-component-and-add-it-to-flow-in-spring-java-dsl)
+7.[Do i need to do declare a channel info in dsl always?](http://stackoverflow.com/questions/31617449/do-i-need-to-do-declare-a-channel-info-in-dsl-always)
+8.[How to do split-aggregate in java dsl by invoking another flow?](http://stackoverflow.com/questions/31622120/how-to-do-split-aggregate-in-java-dsl-by-invoking-another-flow)
+9.[How to do channel interceptor based on pattern using JAVA DSL in Spring Integration?](http://stackoverflow.com/questions/31573744/how-to-do-channel-interceptor-based-on-pattern-using-java-dsl-in-spring-integrat)
+
+
 
  
