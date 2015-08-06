@@ -55,6 +55,11 @@ A sample outbound gateway can have  transformer which transform the canonical ob
 ```
 Working example represents above can be found [here](https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/enrichPayload).
 
+If you see above, you can find the difference how dsl improves readability. Instead of we defining channels, spring generates channels for us. And you can see them if you enable logging.
+
+All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. It is not that tough if you get yours hands on java dsl. 
+
+
 *Advice*
 ```java
  @Aspect
