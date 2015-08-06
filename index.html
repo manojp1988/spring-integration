@@ -45,14 +45,64 @@
 <h4>
 <a id="sample-flow" class="anchor" href="#sample-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample Flow:</h4>
 
-<pre><code>     A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dal way. 
-</code></pre>
+<p>A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. </p>
+
+<p><em>Gateway:</em></p>
 
 <div class="highlight highlight-java"><pre>  @<span class="pl-smi">MessagingGateway</span>
   <span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">HelloGateway</span> {
     <span class="pl-k">@Gateway</span>(<span class="pl-c1">requestChannel</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>helloRequestChannel<span class="pl-pds">"</span></span>)
     <span class="pl-smi">String</span> <span class="pl-en">sayHello</span>(<span class="pl-smi">String</span> <span class="pl-v">payload</span>);
   }</pre></div>
+
+<p><em>Channel definition:</em></p>
+
+<div class="highlight highlight-java"><pre> @<span class="pl-smi">Bean</span>
+ <span class="pl-k">public</span> <span class="pl-smi">MessageChannel</span> helloRequestChannel(){
+   <span class="pl-k">return</span> <span class="pl-smi">MessageChannels</span><span class="pl-k">.</span>direct()<span class="pl-k">.</span>get();
+ }</pre></div>
+
+<p><em>Integration flow:</em></p>
+
+<div class="highlight highlight-java"><pre>  @<span class="pl-smi">Bean</span>
+  <span class="pl-k">public</span> <span class="pl-smi">IntegrationFlow</span> sayHelloFlow(){
+   <span class="pl-k">return</span> <span class="pl-smi">IntegrationFlow</span><span class="pl-k">.</span>from(<span class="pl-s"><span class="pl-pds">"</span>helloRequestChannel<span class="pl-pds">"</span></span>)
+                         .transform(requestTransformer)
+                         .enrichHeaders(headerEnricher)
+                         .handle(httpOutboundGateway)
+                         .transform(responseTransformer)
+                         .get();
+   }</pre></div>
+
+<p><em>How to invoke the gateway</em></p>
+
+<ol>
+<li>Invoke through simple java invocation.</li>
+<li>Put message into the channel.</li>
+</ol>
+
+<div class="highlight highlight-java"><pre>  sayHello(<span class="pl-s"><span class="pl-pds">"</span>dsl<span class="pl-pds">"</span></span>); <span class="pl-c">// Java method invocation.</span></pre></div>
+
+<div class="highlight highlight-xml"><pre><span class="pl-c">&lt;!-- below enricher puts payload into the channel we defined above and sets into property as usual. --&gt;</span>
+  &lt;<span class="pl-ent">int</span><span class="pl-ent">:</span><span class="pl-ent">enricher</span> <span class="pl-e">input-channel</span>=<span class="pl-s"><span class="pl-pds">"</span>HELLO_ENRCH_CHNL<span class="pl-pds">"</span></span>
+        <span class="pl-e">request-channel</span>=<span class="pl-s"><span class="pl-pds">"</span>helloRequestChannel<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">int</span><span class="pl-ent">:</span><span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-e">expression</span>=<span class="pl-s"><span class="pl-pds">"</span>payload.name<span class="pl-pds">"</span></span> /&gt;
+    &lt;/<span class="pl-ent">int</span><span class="pl-ent">:</span><span class="pl-ent">enricher</span>&gt;</pre></div>
+
+<p>Working example represents above can be found <a href="https://github.com/manojp1988/spring-integration/tree/master/javadsl/src/main/java/enrichPayload">here</a>.</p>
+
+<p>If you see above, you can find the difference how dsl improves readability. Instead of we defining channels, spring generates channels for us. And you can see them if you enable logging.</p>
+
+<p>All channels are created based on the flow name we define. If you see from above example, spring generates sayHelloFlow.channel#0, sayHelloFlow.channel#1 etc. </p>
+
+<p><em>Advice</em></p>
+
+<div class="highlight highlight-java"><pre> @<span class="pl-smi">Aspect</span>
+  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">GatewayAdvice</span> {
+    <span class="pl-k">@Before</span>(<span class="pl-s"><span class="pl-pds">"</span>execution(* advice.AdviceExample.HelloGateway.sayHello(*))<span class="pl-pds">"</span></span>)
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">beforeAdvice</span>() {
+      <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Before advice called...<span class="pl-pds">"</span></span>);
+    }</pre></div>
       </section>
     </div>
 
