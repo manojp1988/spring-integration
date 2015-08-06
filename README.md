@@ -12,12 +12,24 @@ Reference: [Spring-Integration-Java-DSL-Reference] (https://github.com/spring-pr
          
 A sample outbound gateway can have  transformer which transform the canonical object to request object, header enricher which enriches header values, and call the outbound gateway and then transform the response object to canonical response object. This can be code in below dsl way. 
 
+*Gateway*
 ```java
   @MessagingGateway
   public interface HelloGateway {
     @Gateway(requestChannel = "helloRequestChannel")
     String sayHello(String payload);
   }
+ ```
+ *Integration flow*
+ ```java
+  @Bean
+  public IntegrationFlow sayHelloFlow(){
+   return IntegrationFlow.from("helloRequestChannel")
+                         .transform(requestTransformer)
+                         .enrichHeaders(headerEnricher)
+                         .handle(httpOutboundGateway)
+                         .transform(responseTransformer)
+                         .get();
 ```
 
 
